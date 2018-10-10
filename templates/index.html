@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Build a Blog</h1>
+<form method ='GET'></form>
+
+    {% if users|length == 0 %}
+    <p>No users yet</p>
+    {% else %}
+
+        <ul>
+            {% for user in users %}
+            <li>
+                
+                <p> <a href ="./blog?user={{user.id}}" value ="{{user.username}}">{{user.username}}</a></p>
+                
+                <hr/>
+            
+            </li>
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+
+{% endblock %}
