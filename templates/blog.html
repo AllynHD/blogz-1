@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1>Build a Blog</h1>
+<h1>Blog Posts</h1>
 <form method ='GET'></form>
 
     {% if blogs|length == 0 %}
@@ -16,9 +16,9 @@
                 <h2> <a href ="./blog?id={{blog.id}}" value ="{{blog.id}}">{{blog.title}}</a></h2>
 
                 <h3>{{blog.body}}</h3>
-                {%for user in user%}
-                <p>Written by {{user.username}}</p>
-                {%endfor%}
+                
+                <h6>Written by <a href="/blog?user={{user.username}}" > {{user.username}}</a></h6>
+                
                 
                 
                 <hr/>

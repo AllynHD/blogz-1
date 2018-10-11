@@ -2,8 +2,32 @@
 
 {% block content %}
 <br>
-{{blog.title}}
-{{blog.body}}
-{{user.username}}
+
+<h1>Blog Posts</h1>
+<form method ='GET'></form>
+
+    {% if blogs|length == 0 %}
+    <p>No blogs yet</p>
+    {% else %}
+
+        <ul>
+            {% for blog in blogs %}
+            <li>
+                
+                <h2> <a href ="./blog?id={{blog.id}}" value ="{{blog.id}}">{{blog.title}}</a></h2>
+
+                <h3>{{blog.body}}</h3>
+                
+                <h6>Written by <a href="/blog?user={{user.username}}" > {{user.username}}</a></h6>
+                
+                
+                
+                <hr/>
+            
+            </li>
+            {% endfor %}
+        </ul>
+
+    {% endif %}
 
 {% endblock %}

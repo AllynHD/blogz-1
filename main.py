@@ -46,7 +46,7 @@ def logout():
 def index():
 
     users= User.query.all()
-    username = request.args.get('user.id')
+    username = request.args.get('user.username')
     if username == None:
         return render_template('index.html', users=users)
 
@@ -98,21 +98,22 @@ def signup():
       
 @app.route('/blog',methods = ['POST', 'GET'])
 def blog():
-
     blogs = Blog.query.all()
     blog_id= request.args.get('blog.id')
-    user_id = request.args.get('user.username')
+    user_id = request.args.get('blog.user_id')
+    username = request.args.get('user.id')
     
-    if blog_id == None:
-        return render_template('blog.html', 
-        title="Blogz!!", blogs=blogs)
 
-    
+    if blog_id == None:
+        users = Blog.query.order_by(user_id).first()
+        user = User.query.get('user.id')
+        return render_template('blog.html', 
+        title="Blogz!!", blogs=blogs, user=user)
+
     else:
-        blog = Blog.query.get(blog_id)
-        user = User.query.get(user_id)
+        blog = Blog.query.get(blog_id)  
         return render_template('single_blog.html'
-        ,blog=blog,user=user)
+        ,blog=blog)
 
 @app.route('/newpost',methods = ['POST', 'GET'])
 def newpost():
