@@ -6,12 +6,8 @@
 <h1>Blog Posts</h1>
 <form method ='GET'></form>
 
-    {% if blogs|length == 0 %}
-    <p>No blogs yet</p>
-    {% else %}
-
         <ul>
-            {% for blog in blogs %}
+            {% for user in users %}
             <li>
                 
                 <h2> <a href ="./blog?id={{blog.id}}" value ="{{blog.id}}">{{blog.title}}</a></h2>

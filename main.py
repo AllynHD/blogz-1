@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect, render_template, session, flash
 from flask_sqlalchemy import SQLAlchemy
 
+
 app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:0812@localhost:8889/blogz'
@@ -13,7 +14,7 @@ class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     title = db.Column(db.String(120))
     body = db.Column(db.String(1000))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_name = db.Column(db.String(120), db.ForeignKey('user.username'))
 
     def __init__(self, title,body, user):   
         self.title = title
@@ -33,9 +34,9 @@ class User(db.Model):
 
 @app.before_request
 def require_login():
-    allowed_routes = ["signup", 'login', 'blog', 'index']
+    allowed_routes = ['signup', 'login','blog','index']
     if request.endpoint not in allowed_routes and 'username' not in session:
-        return redirect('login')
+        return redirect('/login')
 
 @app.route('/logout')
 def logout():
@@ -100,13 +101,11 @@ def signup():
 def blog():
     blogs = Blog.query.all()
     blog_id= request.args.get('blog.id')
-    user_id = request.args.get('blog.user_id')
-    
 
     if blog_id == None:
-        users = Blog.query.order_by(user_id).all()
+       
         return render_template('blog.html', 
-        title="Blogz!!", blogs=blogs, users=users)
+        title="Blogz!!", blogs=blogs,user=user)
 
     else:
         blog = Blog.query.get(blog_id)  

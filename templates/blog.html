@@ -17,14 +17,15 @@
 
                 <h3>{{blog.body}}</h3>
                 
-                <h6>Written by <a href="/blog?user={{blog.user_id}}" > {{blog.user_id}}</a></h6>
+          
+                <h6>Written by <a href="/blog?user={{blog.user_name}}" > {{blog.user_name}}</a></h6>
                 
-                
+                {% endfor %}
                 
                 <hr/>
-            
             </li>
-            {% endfor %}
+            
+            
         </ul>
 
     {% endif %}
