@@ -101,14 +101,12 @@ def blog():
     blogs = Blog.query.all()
     blog_id= request.args.get('blog.id')
     user_id = request.args.get('blog.user_id')
-    username = request.args.get('user.id')
     
 
     if blog_id == None:
-        users = Blog.query.order_by(user_id).first()
-        user = User.query.get('user.id')
+        users = Blog.query.order_by(user_id).all()
         return render_template('blog.html', 
-        title="Blogz!!", blogs=blogs, user=user)
+        title="Blogz!!", blogs=blogs, users=users)
 
     else:
         blog = Blog.query.get(blog_id)  
