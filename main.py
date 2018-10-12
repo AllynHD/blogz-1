@@ -54,9 +54,6 @@ def index():
     user= User.query.get(username)
     return render_template('singleuser.html', user=user)
 
-
-
-
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
@@ -99,18 +96,18 @@ def signup():
       
 @app.route('/blog',methods = ['POST', 'GET'])
 def blog():
+
     blogs = Blog.query.all()
-    blog_id= request.args.get('blog.id')
-
+    blog_id= request.args.get('id')
+    
     if blog_id == None:
-       
         return render_template('blog.html', 
-        title="Blogz!!", blogs=blogs,user=user)
-
-    else:
-        blog = Blog.query.get(blog_id)  
-        return render_template('single_blog.html'
+        title="Build a Blog!", blogs=blogs )
+        
+    blog = Blog.query.get(blog_id)  
+    return render_template('single_blog.html'
         ,blog=blog)
+
 
 @app.route('/newpost',methods = ['POST', 'GET'])
 def newpost():
