@@ -99,15 +99,16 @@ def blog():
 
     blogs = Blog.query.all()
     blog_id= request.args.get('id')
-    
+
     if blog_id == None:
         return render_template('blog.html', 
         title="Build a Blog!", blogs=blogs )
-        
-    blog = Blog.query.get(blog_id)  
-    return render_template('single_blog.html'
-        ,blog=blog)
 
+    if request.method == 'GET':
+
+        blog = Blog.query.get(blog_id)
+        return render_template('single_blog.html'
+        ,blog=blog)
 
 @app.route('/newpost',methods = ['POST', 'GET'])
 def newpost():
