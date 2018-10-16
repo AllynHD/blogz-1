@@ -50,7 +50,7 @@ def index():
     username = request.args.get('id')
     if username == None:
         return render_template('index.html', users=users)
-        
+
     if request.args.get('user', ''):
         user= User.query.get(username)
         return render_template('singleuser.html', user=user)
@@ -98,16 +98,9 @@ def signup():
 @app.route('/blog',methods = ['POST', 'GET'])
 def blog():
 
-    userpage = request.args.get('user', '')
-    blogpage = request.args.get('id', '')
-
     blogs = Blog.query.all()
     blog_id= request.args.get('id')
-    username = request.args.get('id')
-
-    if blog_id == None:
-        return render_template('blog.html', 
-        title="Build a Blog!", blogs=blogs )
+    
 
     if request.args.get('id', ''):
 
@@ -115,10 +108,16 @@ def blog():
         return render_template('single_blog.html'
         ,blog=blog)
 
+    
+    if request.args.get('user', ''):
+        user = request.args.get('username')
+        users= User.query.filter_by(user=user).first()
+        return render_template('singleuser.html',users=users)
+
     else:
-        if request.args.get('user', ''):
-            user= User.query.get(username)
-            return render_template('singleuser.html', user=user)
+        return render_template('blog.html', 
+        title="Build a Blog!", blogs=blogs )
+
 
 
 @app.route('/newpost',methods = ['POST', 'GET'])
