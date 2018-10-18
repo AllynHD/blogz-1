@@ -1,33 +1,12 @@
 {% extends "base.html" %}
 
+
 {% block content %}
 
-<h1>Blog Posts</h1>
-<form method ='GET'></form>
+<br>
+<h1>{{blog.title}}</h1>
+<p>{{blog.body}}</p>
+<h6>Written by <a href="/blog?user={{blog.user_id.username}}" > {{blog.user_id.username}}</a></h6>
 
-    {% if users|length == 0 %}
-    <p>No blogs yet</p>
-    {% else %}
-
-        <ul>
-            {% for user in users %}
-            <li>
-                
-                <h2> <a href ="/blog?id={{blog.id}}" value ="{{blog.id}}">{{blog.title}}</a></h2>
-
-                <h3>{{blog.body}}</h3>
-                
-          
-                <h6>Written by <a href="/blog?user={{blog.user_name}}" > {{blog.user_name}}</a></h6>
-                
-                {% endfor %}
-                
-                <hr/>
-            </li>
-            
-            
-        </ul>
-
-    {% endif %}
 
 {% endblock %}

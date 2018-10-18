@@ -14,7 +14,7 @@ class Blog(db.Model):
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     title = db.Column(db.String(120))
     body = db.Column(db.String(1000))
-    user_name = db.Column(db.String(120), db.ForeignKey('user.username'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __init__(self, title,body, user):   
         self.title = title
