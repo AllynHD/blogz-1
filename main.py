@@ -46,14 +46,19 @@ def logout():
 @app.route('/', methods=['POST','GET'])
 def index():
 
-    users= User.query.all()
+    users= Blog.query.all()
     username = request.args.get('user_name')
-    if username == None:
-        return render_template('index.html', users=users)
+
 
     if request.args.get('user', ''):
-        user= Blog.query.get(username)
-        return render_template('singleuser.html', user=user)
+        user_id = request.args.get('user')
+        users = User.query.get(user_id)
+        blogs = Blog.query.filter_by(user=users).all()
+        return render_template('singleuser.html',blogs=blogs)
+
+    else:
+        blogs= Blog.query.all()
+        return render_template('index.html', blogs=blogs)
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -109,9 +114,10 @@ def blog():
 
     
     if request.args.get('user', ''):
-        user = request.args.get('user_name')
-        users = Blog.query.filter_by(user=user).all()
-        return render_template('singleuser.html',users=users)
+        user_id = request.args.get('user')
+        users = User.query.get(user_id)
+        blogs = Blog.query.filter_by(user=users).all()
+        return render_template('singleuser.html',blogs=blogs)
 
     else:
         return render_template('blog.html', 
