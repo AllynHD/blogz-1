@@ -10,10 +10,10 @@
     {% else %}
 
         <ul>
-            {%for blog in users%}
+            {%for user in users%}
             <li>
                 
-                <p> <a href ="/blog?user={{blog.user.id}}" >{{blog.user.username}}</a></p>
+                <p> <a href ="/blog?user={{user.id}}" >{{user.username}}</a></p>
                 
                 <hr/>
             

@@ -46,7 +46,7 @@ def logout():
 @app.route('/', methods=['POST','GET'])
 def index():
 
-    users= Blog.query.all()
+    users= User.query.all()
     username = request.args.get('user_name')
     return render_template('index.html', users=users)
 
