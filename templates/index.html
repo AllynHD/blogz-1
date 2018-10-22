@@ -5,15 +5,15 @@
 <h1>Blogz!</h1>
 <form method ='GET'></form>
 
-    {% if blogs|length == 0 %}
+    {% if users|length == 0 %}
     <p>No users yet</p>
     {% else %}
 
         <ul>
-            {%for blog in blogs%}
+            {%for blog in users%}
             <li>
                 
-                <p> <a href ="/blog?user={{blog.id}}" >{{blog.user.username}}</a></p>
+                <p> <a href ="/blog?user={{blog.user.id}}" >{{blog.user.username}}</a></p>
                 
                 <hr/>
             

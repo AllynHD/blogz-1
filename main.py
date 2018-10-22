@@ -48,7 +48,7 @@ def index():
 
     users= Blog.query.all()
     username = request.args.get('user_name')
-
+    return render_template('index.html', users=users)
 
     if request.args.get('user', ''):
         user_id = request.args.get('user')
@@ -56,9 +56,6 @@ def index():
         blogs = Blog.query.filter_by(user=users).all()
         return render_template('singleuser.html',blogs=blogs)
 
-    else:
-        blogs= Blog.query.all()
-        return render_template('index.html', blogs=blogs)
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
