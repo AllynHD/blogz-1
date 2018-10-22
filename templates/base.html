@@ -5,23 +5,36 @@
             .error {
                 color: red;
             }
+
+            div { 
+                display:inline-block;
+                margin-right: 50px
+            }
+
+            a{
+                display: inline-block;
+                margin-right: 15px
+            }
+
         </style>
-
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel= "stylesheet"  href="http://1.1/templates/style.css" type = "text/css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel ="stylesheet" href = "style/style.css" >
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="icon" href="data:,">
-                
-        <nav>
-            <a href = "/login">Login</a>
 
-            <a href = "/">Home</a>
-            
-            <a href = "/blog">Blogz</a>
-        
-            <a href = '/newpost'>Add a Blog</a>
-
-            <a href='/logout'>Log Out</a>
-        </nav>
+        <nav class = "navbar navbar-default">
+            <div class="container-fluid">
+                <div class ="navbar-header">
+                        <a class="navbar-brand" href = "/">Home</a>
+                </div>
+                <ul class= "nav navbar-nav"> 
+                    <a href = "/login">Login</a>
+                    <a href = "/blog">Blogz</a>
+                    <a href = '/newpost'>Add a Blog</a>
+                    <a href='/logout'>Log Out</a>
+                </ul>
+            </div>    
+        </nav>  
         <title>{{title}}</title>
     </head>
 <body>
