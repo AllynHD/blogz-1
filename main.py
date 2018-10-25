@@ -26,12 +26,12 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     username =  db.Column(db.String(120), unique=True)
-    pw_hash = db.Column(db.String(120))    
+    password = db.Column(db.String(120))    
     blogs = db.relationship('Blog', backref='user')
 
     def __init__(self, username,password):
         self.username = username
-        self.pw_hash = make_pw_hash(password)
+        self.password = password
 
 @app.before_request
 def require_login():
@@ -64,7 +64,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
-        if user and check_pw_hash(password,user.pw_hash):
+        if user and user.password == password:
             session['username'] = username
             flash("Logged in")
             return redirect('/newpost')
