@@ -1,5 +1,6 @@
 from flask import Flask, request, redirect, render_template, session, flash
 from flask_sqlalchemy import SQLAlchemy
+from hashutils import make_pw_hash, check_pw_hash
 
 
 app = Flask(__name__)
@@ -25,12 +26,12 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True,autoincrement=True)
     username =  db.Column(db.String(120), unique=True)
-    password = db.Column(db.String(120))    
+    pw_hash = db.Column(db.String(120))    
     blogs = db.relationship('Blog', backref='user')
 
     def __init__(self, username,password):
         self.username = username
-        self.password = password
+        self.pw_hash = make_pw_hash(password)
 
 @app.before_request
 def require_login():
@@ -63,7 +64,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
-        if user and user.password == password:
+        if user and check_pw_hash(password,user.pw_hash):
             session['username'] = username
             flash("Logged in")
             return redirect('/newpost')
