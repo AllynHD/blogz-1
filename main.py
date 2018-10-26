@@ -49,7 +49,7 @@ def index():
 
     users= User.query.all()
     username = request.args.get('user_name')
-    return render_template('index.html', users=users)
+    return render_template('index.html', users=users,title= "Home")
 
     if request.args.get('user', ''):
         user_id = request.args.get('user')
@@ -71,7 +71,7 @@ def login():
         else:
             flash('User password incorrect, or user does not exist', 'error')
 
-    return render_template('login.html')
+    return render_template('login.html', title="Login")
 
 @app.route('/signup', methods=['POST','GET'])
 def signup():
@@ -119,7 +119,7 @@ def blog():
 
     else:
         return render_template('blog.html', 
-        title="Build a Blog!", blogs=blogs )
+        title="Blogz!", blogs=blogs )
 
 
 
