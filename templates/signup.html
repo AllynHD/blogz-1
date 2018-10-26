@@ -7,18 +7,18 @@
     <table>
         <tr>            
             <label>Username: 
-                <input id="user-name" name="username" type = "text" value ='{{username}}' title ="Username must be 3- 20 characters and may not contain spaces."minlength="3" maxlength="20" pattern="^[A-Za-z][A-Za-z0-9]*$" required/>
+                <input id="user-name" class="form-control" name="username" type = "text" value ='{{username}}' title ="Username must be 3- 20 characters and may not contain spaces."minlength="3" maxlength="20" pattern="^[A-Za-z][A-Za-z0-9]*$" required/>
             </label>
         </tr>
         <br>
 
         <tr>
             <label>Password
-                <input  type="password" minlength="3" maxlength="20" title ="Password must be 3- 20 characters and may not contain any spaces." required pattern="^[A-Za-z][A-Za-z0-9!@#$%&?]*$" name="pwd1"/>
+                <input  type="password" class="form-control" minlength="3" maxlength="20" title ="Password must be 3- 20 characters and may not contain any spaces." required pattern="^[A-Za-z][A-Za-z0-9!@#$%&?]*$" name="pwd1"/>
             </label>
             <br>
             <label>Verify Password:
-                <input  type="password" minlength="3" maxlength="20" required title ="Password must be 3- 20 characters and may not contain any spaces." pattern="^[A-Za-z][A-Za-z0-9!@#$%&?]*$" name="pwd2"/>
+                <input  type="password" class="form-control" minlength="3" maxlength="20" required title ="Password must be 3- 20 characters and may not contain any spaces." pattern="^[A-Za-z][A-Za-z0-9!@#$%&?]*$" name="pwd2"/>
             </label>
             <p class="error">{{password_error}}</p>
         </tr>
