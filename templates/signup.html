@@ -14,11 +14,11 @@
 
         <tr>
             <label>Password
-                <input  type="password" class="form-control" minlength="3" maxlength="20" title ="Password must be 3- 20 characters and may not contain any spaces." required pattern="^[A-Za-z][A-Za-z0-9!@#$%&?]*$" name="pwd1"/>
+                <input  type="password" class="form-control" minlength="3" maxlength="20" title ="Password must be 3- 20 characters and may not contain any spaces." required pattern="^\S{3,20}$" name="pwd1"/>
             </label>
             <br>
             <label>Verify Password:
-                <input  type="password" class="form-control" minlength="3" maxlength="20" required title ="Password must be 3- 20 characters and may not contain any spaces." pattern="^[A-Za-z][A-Za-z0-9!@#$%&?]*$" name="pwd2"/>
+                <input  type="password" class="form-control" minlength="3" maxlength="20" required title ="Password must be 3- 20 characters and may not contain any spaces." pattern="^\S{3,20}$" name="pwd2"/>
             </label>
             <p class="error">{{password_error}}</p>
         </tr>
